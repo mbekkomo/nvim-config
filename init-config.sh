@@ -7,6 +7,10 @@ tee() {
 prog="$0"
 
 if [[ -n "$NVIMLUA" && -n "$NVIMAFTERLUA" ]]; then
+    echo -e "you already setup nvim config!\n"
+    echo "variable values:"
+    echo "\$NVIMLUA = $NVIMLUA"
+    echo "\$NVIMAFTERLUA = $NVIMAFTERLUA"
     exit
 fi
 
@@ -40,6 +44,16 @@ EOF
 )"
         echo "$code" | tee -a "$HOME/.config/fish/config.fish"
     ;;
+    *)
+        echo -e "unsupported shell: $SHELL\n"
+        echo -e "to setup nvim config manually, set this environment variable below\n"
+        echo "-------------------------------"
+        echo "    VARIABLE    |    VALUE"
+        echo "-------------------------------"
+        echo " \$NVIMLUA       | \"$(realpath "$prog")/lua\""
+        echo " \$NVIMAFTERLUA  | \"$(realpath "$prog")/after_lua\""
+        echo "-------------------------------"
+        exit 1
 esac
 
 echo "successfully config nvim"
