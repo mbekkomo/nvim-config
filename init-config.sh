@@ -15,13 +15,16 @@ if [[ -n "$NVIMLUA" && -n "$NVIMAFTERLUA" ]]; then
 fi
 
 SHELL="${SHELL##/}"
+
+nvimpath="$(dirname "$(realpath "$prog")")"
+echo $nvimpath
 case "$SHELL" in
     sh|bash|zsh)
         code="$(cat << EOF
 
 # start nvim config
-export NVIMLUA="$(realpath "$prog")/lua"
-export NVIMAFTERLUA="$(realpath "$prog")/after_lua"
+export NVIMLUA="$nvimpath/lua"
+export NVIMAFTERLUA="$nvimpath/after_lua"
 # end nvim config
 EOF
 )"
@@ -37,8 +40,8 @@ EOF
         code="$(cat << EOF
 
 # start nvim config
-set -gx NVIMLUA "$(realpath "$prog")/lua"
-set -gx NVIMAFTERLUA "$(realpath "$prog")/after_lua"
+set -gx NVIMLUA "$nvimpath/lua"
+set -gx NVIMAFTERLUA "$nvimpath/after_lua"
 # end nvim config
 EOF
 )"
@@ -50,8 +53,8 @@ EOF
         echo "-------------------------------"
         echo "    VARIABLE    |    VALUE"
         echo "-------------------------------"
-        echo " \$NVIMLUA       | \"$(realpath "$prog")/lua\""
-        echo " \$NVIMAFTERLUA  | \"$(realpath "$prog")/after_lua\""
+        echo " \$NVIMLUA       | \"$nvimpath/lua\""
+        echo " \$NVIMAFTERLUA  | \"$nvimpath/after_lua\""
         echo "-------------------------------"
         exit 1
 esac
