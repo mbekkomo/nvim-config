@@ -43,6 +43,11 @@ local plugins =
                 suggest_lsp_servers = false
             }
 
+            lsp.setup_servers {
+                "clangd",
+                "teal_ls"
+            }
+
             lsp.nvim_workspace()
             lsp.setup()
 
@@ -55,7 +60,7 @@ local plugins =
         ; config = function ()
             require "nvim-treesitter.configs".setup {
                 ensure_installed = { "lua", "fennel", "c", "cpp",
-                "javascript", "typescript", "cue" },
+                "javascript", "typescript", "cue", "teal", "clojure" },
 
                 highlight = {
                     enable = true,
@@ -79,6 +84,8 @@ local plugins =
         { "jeffkreeftmeijer/vim-numbertoggle"
         },
         { "kongo2002/fsharp-vim"
+        },
+        { "xigoi/vim-arturo"
         }
     }
 
