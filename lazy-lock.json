@@ -17,7 +17,9 @@
   "nvim-lspconfig": { "branch": "master", "commit": "2ba6e268d92934e14fe561fe446a49540803e57f" },
   "nvim-treesitter": { "branch": "master", "commit": "fc1ca10bfbdee17e29374d0d1bac8ea030539dc3" },
   "nvim-web-devicons": { "branch": "master", "commit": "4af94fec29f508159ceab5413383e5dedd6c24e3" },
+  "vaxe": { "branch": "master", "commit": "93774994b15499356d9ad665546e2ddd26271352" },
   "vim-arturo": { "branch": "master", "commit": "55fb9cdf03256b53573e2bc87911d0fe696868c6" },
   "vim-numbertoggle": { "branch": "main", "commit": "075b7478777e694fbac330ee34a74590dad0fee1" },
+  "vim-raku": { "branch": "master", "commit": "f9ed159f2a6e733d544c3f674f9d2a1ed1c89654" },
   "vim-visual-multi": { "branch": "master", "commit": "724bd53adfbaf32e129b001658b45d4c5c29ca1a" }
 }

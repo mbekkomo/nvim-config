@@ -33,7 +33,7 @@ local plugins =
             "hrsh7th/cmp-nvim-lua",
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets"
-          }
+        }
         ; config = function()
             -- Config lsp-zero
             local lsp = require "lsp-zero".preset {
@@ -47,6 +47,12 @@ local plugins =
                 "clangd",
                 "teal_ls"
             }
+
+            lsp.configure("bashls",{
+                cmd_env = {
+                    SHELLCHECK_PATH = "/usr/local/bin/shellcheck"
+                }
+            })
 
             lsp.nvim_workspace()
             lsp.setup()
@@ -86,6 +92,10 @@ local plugins =
         { "kongo2002/fsharp-vim"
         },
         { "xigoi/vim-arturo"
+        },
+        { "Raku/vim-raku"
+        },
+        { "jdonaldson/vaxe"
         }
     }
 
