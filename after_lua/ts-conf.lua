@@ -1,4 +1,5 @@
 vim.treesitter.language.register("teal","nelua")
+vim.treesitter.language.register("lua","ravi")
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.haxe = {
@@ -11,9 +12,11 @@ parser_config.haxe = {
 
 vim.filetype.add {
     extension = {
-        hx = "haxe"
+        hx = "haxe",
+        ravi = "ravi"
     },
     pattern = {
-        ["*.hx"] = "haxe"
+        ["*.hx"] = "haxe",
+        ["*.ravi"] = "ravi"
     }
 }

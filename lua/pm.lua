@@ -21,6 +21,8 @@ local plugins =
         { "glepnir/lspsaga.nvim"
         ; event = "BufRead"
   	    },
+        { "windwp/nvim-autopairs"
+        },
         { "VonHeikemen/lsp-zero.nvim"
         ; branch = "v1.x"
         ; dependencies = {
@@ -45,12 +47,21 @@ local plugins =
 
             lsp.setup_servers {
                 "clangd",
-                "teal_ls"
+                "teal_ls",
+                "jsonls",
             }
 
             lsp.configure("bashls",{
                 cmd_env = {
                     SHELLCHECK_PATH = "/usr/local/bin/shellcheck"
+                }
+            })
+
+            lsp.configure("yamlls",{
+                settings = {
+                    yaml = {
+                        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+                    }
                 }
             })
 
@@ -66,7 +77,8 @@ local plugins =
         ; config = function ()
             require "nvim-treesitter.configs".setup {
                 ensure_installed = { "lua", "fennel", "c", "cpp",
-                "javascript", "typescript", "cue", "teal", "clojure" },
+                "javascript", "typescript", "cue", "teal", "clojure",
+                "json", "yaml" },
 
                 highlight = {
                     enable = true,
@@ -83,8 +95,8 @@ local plugins =
             }
           end
         },
-	    { "mg979/vim-visual-multi"
-	    },
+        { "mg979/vim-visual-multi"
+        },
         { "glepnir/galaxyline.nvim"
         },
         { "jeffkreeftmeijer/vim-numbertoggle"
