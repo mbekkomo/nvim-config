@@ -14,7 +14,9 @@ local plugins =
         ; dependencies = "nvim-tree/nvim-web-devicons"
         ; config = function()
             require "bufferline".setup {
-                icon_close_tab_modified = "£"
+                icons = {
+                    modified = { button = "£" }
+                }
             }
           end
         },
@@ -101,13 +103,9 @@ local plugins =
         },
         { "jeffkreeftmeijer/vim-numbertoggle"
         },
-        { "kongo2002/fsharp-vim"
-        },
         { "xigoi/vim-arturo"
         },
-        { "Raku/vim-raku"
-        },
-        { "jdonaldson/vaxe"
+        { "edubart/nelua-vim"
         }
     }
 

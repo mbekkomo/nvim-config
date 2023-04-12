@@ -1,4 +1,4 @@
-vim.treesitter.language.register("teal","nelua")
+-- vim.treesitter.language.register("teal","nelua")
 vim.treesitter.language.register("lua","ravi")
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
