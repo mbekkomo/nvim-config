@@ -48,7 +48,7 @@ local plugins =
             }
 
             lsp.setup_servers {
-                "clangd",
+                "clangd", "grammarly",
                 "teal_ls",
                 "jsonls",
             }
@@ -72,15 +72,20 @@ local plugins =
 
             -- Config lspsaga
             require "lspsaga".setup {}
-          end
+
+            -- Config autopairs
+            local cmp = require "cmp"
+            local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end
 	    },
         { "nvim-treesitter/nvim-treesitter"
         ; build = ":TSUpdate"
         ; config = function ()
             require "nvim-treesitter.configs".setup {
                 ensure_installed = { "lua", "fennel", "c", "cpp",
-                "javascript", "typescript", "cue", "teal", "clojure",
-                "json", "yaml" },
+                "javascript", "typescript", "cue", "teal", "json",
+                "yaml", "bash" },
 
                 highlight = {
                     enable = true,
@@ -95,6 +100,13 @@ local plugins =
                     additional_vim_regex_highlighting = false
                 }
             }
+          end
+        },
+        { "brenoprata10/nvim-highlight-colors"
+        ; config = function()
+            vim.opt.termguicolors = true
+
+            require "nvim-highlight-colors".setup{}
           end
         },
         { "mg979/vim-visual-multi"
