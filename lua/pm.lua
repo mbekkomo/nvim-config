@@ -23,8 +23,6 @@ local plugins =
         { "glepnir/lspsaga.nvim"
         ; event = "BufRead"
   	    },
-        { "windwp/nvim-autopairs"
-        },
         { "VonHeikemen/lsp-zero.nvim"
         ; branch = "v1.x"
         ; dependencies = {
@@ -33,10 +31,14 @@ local plugins =
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-nvim-lua",
             "L3MON4D3/LuaSnip",
-            "rafamadriz/friendly-snippets"
+            "rafamadriz/friendly-snippets",
+            "windwp/nvim-autopairs",
+            "onsails/lspkind.nvim",
+            "uga-rosa/cmp-dictionary"
         }
         ; config = function()
             -- Config lsp-zero
@@ -73,8 +75,46 @@ local plugins =
             -- Config lspsaga
             require "lspsaga".setup {}
 
-            -- Config autopairs
             local cmp = require "cmp"
+
+            cmp.setup {
+                formatting = {
+                    -- Config lspkind for cmp
+                    format = require "lspkind".cmp_format {
+                        maxwidth = 50,
+                        ellipsis_char = "..."
+                    }
+                },
+                sources = {
+                    -- lsp-signature-help
+                    { name = "nvim_lsp_signature_help" },
+                    -- dictionary
+                    { name = "dictionary",
+                      keyword_length = 2 },
+
+                    -- default lsp-zero
+                    { name = "nvim_lsp" },
+                    { name = "buffer" },
+                    { name = "luasnip" },
+                    { name = "nvim_lua" },
+                    { name = "path" }
+
+                }
+            }
+
+            -- Config cmp-dictionary
+            local cmp_dict = require "cmp_dictionary"
+            cmp_dict.setup {
+                async = true
+            }
+
+            cmp_dict.switcher {
+                filetype = {
+                    markdown = os.getenv "NVIMDIR".."/dict/en.dict"
+                }
+            }
+
+            -- Config autopairs
             local cmp_autopairs = require "nvim-autopairs.completion.cmp"
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end
@@ -114,6 +154,9 @@ local plugins =
         { "glepnir/galaxyline.nvim"
         },
         { "jeffkreeftmeijer/vim-numbertoggle"
+        ; config = function()
+            vim.opt.number = true
+        end
         },
         { "xigoi/vim-arturo"
         },

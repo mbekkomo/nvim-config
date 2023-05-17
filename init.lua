@@ -1,6 +1,4 @@
-if vim.o.shell:match("/fish$") then
-	vim.o.shell = "bash"
-end
+vim.opt.shell = "bash"
 
 do
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

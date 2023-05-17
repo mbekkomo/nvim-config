@@ -9,6 +9,7 @@ prog="$0"
 if [[ -n "$NVIMLUA" && -n "$NVIMAFTERLUA" ]]; then
     echo -e "you already setup nvim config!\n"
     echo "variable values:"
+    echo "\$NVIMDIR = $NVIMDIR"
     echo "\$NVIMLUA = $NVIMLUA"
     echo "\$NVIMAFTERLUA = $NVIMAFTERLUA"
     exit
@@ -17,12 +18,12 @@ fi
 SHELL="${SHELL##/}"
 
 nvimpath="$(dirname "$(realpath "$prog")")"
-echo $nvimpath
 case "$SHELL" in
     sh|bash|zsh)
         code="$(cat << EOF
 
 # start nvim config
+export NVIMDIR="$nvimpath"
 export NVIMLUA="$nvimpath/lua"
 export NVIMAFTERLUA="$nvimpath/after_lua"
 # end nvim config
@@ -40,6 +41,7 @@ EOF
         code="$(cat << EOF
 
 # start nvim config
+set -gx NVIMDIR "$nvimpath"
 set -gx NVIMLUA "$nvimpath/lua"
 set -gx NVIMAFTERLUA "$nvimpath/after_lua"
 # end nvim config
@@ -53,6 +55,7 @@ EOF
         echo "-------------------------------"
         echo "    VARIABLE    |    VALUE"
         echo "-------------------------------"
+        echo " \$NVIMDIR       | \"$nvimpath\""
         echo " \$NVIMLUA       | \"$nvimpath/lua\""
         echo " \$NVIMAFTERLUA  | \"$nvimpath/after_lua\""
         echo "-------------------------------"
@@ -60,4 +63,4 @@ EOF
 esac
 
 echo "successfully config nvim"
-echo 'run `exec $SHELL` and open nvim to see changes'
+echo "run \`exec $SHELL\` and open nvim to see changes"

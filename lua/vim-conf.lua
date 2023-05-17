@@ -5,8 +5,6 @@ local function set_opt(tbl)
 end
 
 set_opt({
-	-- Set Number
-	number = true,
 	-- Set indent to 4 spaces
 	autoindent = true,
 	expandtab = true,
@@ -33,20 +31,16 @@ local function stylua_cmd(save)
 		local filename = opts.fargs[1] or nil
 
 		if save and vim.fn.getbufinfo("%")[1].changed == 1 then
-			vim.cmd"w"
+			vim.cmd("w")
 		end
 
 		if not filename then
-			vim.cmd("term stylua % --color always --check %\
-            startinsert")
+			vim.cmd("!stylua %")
 		else
-			vim.cmd("term stylua "..table.concat(opts.fargs," ").."\
-            startinsert")
+			vim.cmd("!stylua " .. table.concat(opts.fargs, " "))
 		end
 	end
 end
 
 vim.api.nvim_create_user_command("SStylua", stylua_cmd(true), { nargs = "*" })
 vim.api.nvim_create_user_command("Stylua", stylua_cmd(), { nargs = "*" })
-
-
