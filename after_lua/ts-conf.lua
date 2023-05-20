@@ -16,7 +16,7 @@ vim.filetype.add {
         ravi = "ravi"
     },
     pattern = {
-        ["*.hx"] = "haxe",
-        ["*.ravi"] = "ravi"
+        [".*%.hx"] = "haxe",
+        [".*%.ravi"] = "ravi"
     }
 }
