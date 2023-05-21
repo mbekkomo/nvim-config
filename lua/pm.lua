@@ -3,7 +3,10 @@ local plugins = {
         "catppuccin/nvim",
         name = "catppuccin",
         config = function()
-            require("catppuccin").setup({ no_italic = true })
+            require("catppuccin").setup({
+                no_italic = true,
+                term_colors = true
+            })
             vim.cmd.colorscheme("catppuccin")
         end,
     },
