@@ -35,10 +35,10 @@ keymap("n", "<leader>pe", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 keymap("n", "<leader>ne", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 
 keymap("n", "<leader>Pe", function()
-  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end)
 keymap("n", "<leader>Ne", function()
-  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+    require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end)
 
 keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
