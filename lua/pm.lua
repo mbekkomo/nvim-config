@@ -37,6 +37,7 @@ local plugins = {
             "windwp/nvim-autopairs",
             "onsails/lspkind.nvim",
             "uga-rosa/cmp-dictionary",
+            "PaterJason/cmp-conjure"
         },
         config = function()
             -- Config lsp-zero
@@ -87,6 +88,8 @@ local plugins = {
                     { name = "nvim_lsp_signature_help" },
                     -- dictionary
                     { name = "dictionary", keyword_length = 2 },
+                    -- conjure
+                    { name = "conjure" },
                     -- default lsp-zero
                     { name = "nvim_lsp" },
                     { name = "buffer" },
@@ -114,6 +117,9 @@ local plugins = {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        dependencies = {
+            "nvim-treesitter/playground"
+        },
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = {
@@ -128,6 +134,7 @@ local plugins = {
                     "json",
                     "yaml",
                     "bash",
+                    "query"
                 },
                 highlight = {
                     enable = true,
@@ -140,6 +147,9 @@ local plugins = {
                     end,
                     additional_vim_regex_highlighting = false,
                 },
+                playground = {
+                    enable = true
+                }
             })
         end,
     },
@@ -150,6 +160,12 @@ local plugins = {
 
             require("nvim-highlight-colors").setup({})
         end,
+    },
+    {
+        "Olical/conjure",
+        dependencies = {
+            "Olical/aniseed"
+        }
     },
     { "mg979/vim-visual-multi" },
     { "glepnir/galaxyline.nvim" },
