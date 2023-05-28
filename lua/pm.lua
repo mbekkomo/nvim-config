@@ -162,9 +162,9 @@ local plugins = {
         end,
     },
     {
-        "Olical/conjure",
+        "rktjmp/hotpot.nvim",
         dependencies = {
-            "Olical/aniseed"
+            "Olical/conjure"
         }
     },
     { "mg979/vim-visual-multi" },
