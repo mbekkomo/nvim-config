@@ -53,6 +53,7 @@ local plugins = {
 				"grammarly",
 				"teal_ls",
 				"jsonls",
+                "tsserver"
 			})
 
 			lsp.configure("bashls", {
@@ -63,9 +64,18 @@ local plugins = {
 				settings = {
 					yaml = {
 						["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                        ["https://github.com/catppuccin/catppuccin/raw/main/resources/ports.schema.json"] = "/resources/ports.yml"
 					},
 				},
 			})
+
+            lsp.configure("luals", {
+                settings = {
+                    workspace = {
+                        library = { os.getenv("HOME") .. "/.luarocks/share/lua/5.4" }
+                    }
+                }
+            })
 
 			lsp.nvim_workspace()
 			lsp.setup()
@@ -177,6 +187,10 @@ local plugins = {
 	},
 	{ "xigoi/vim-arturo" },
 	{ "edubart/nelua-vim" },
+	{
+		name = "vim-arturo",
+		dir = os.getenv("HOME") .. "/project/vim-arturo",
+	},
 }
 
 require("lazy").setup(plugins)
