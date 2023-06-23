@@ -1,3 +1,28 @@
+---@param tbl table
+---@return table
+local function table_copy(tbl)
+	local buff = {}
+	for k, v in pairs(tbl) do
+		buff[k] = v
+	end
+	return buff
+end
+
+---@param tbl table
+---@param ... any
+---@return ...
+local function table_remval(tbl, ...)
+	local return_val = {}
+	for i, v in ipairs(tbl) do
+		for j = 1, select("#", ...) do
+			if select(j, ...) == v then
+				return_val[#return_val + 1] = table.remove(tbl, i)
+			end
+		end
+	end
+	return unpack(return_val)
+end
+
 local plugins = {
 	{
 		"catppuccin/nvim",
@@ -53,7 +78,7 @@ local plugins = {
 				"grammarly",
 				"teal_ls",
 				"jsonls",
-                "tsserver"
+				"tsserver",
 			})
 
 			lsp.configure("bashls", {
@@ -64,18 +89,18 @@ local plugins = {
 				settings = {
 					yaml = {
 						["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                        ["https://github.com/catppuccin/catppuccin/raw/main/resources/ports.schema.json"] = "/resources/ports.yml"
+						["https://github.com/catppuccin/catppuccin/raw/main/resources/ports.schema.json"] = "/resources/ports.yml",
 					},
 				},
 			})
 
-            lsp.configure("luals", {
-                settings = {
-                    workspace = {
-                        library = { os.getenv("HOME") .. "/.luarocks/share/lua/5.4" }
-                    }
-                }
-            })
+			lsp.configure("lua_ls", {
+				settings = {
+					workspace = {
+						library = { os.getenv("HOME") .. "/.luarocks/share/lua/5.4" },
+					},
+				},
+			})
 
 			lsp.nvim_workspace()
 			lsp.setup()
@@ -129,8 +154,25 @@ local plugins = {
 		build = ":TSUpdate",
 		dependencies = {
 			"nvim-treesitter/playground",
+			"p00f/nvim-ts-rainbow",
 		},
 		config = function()
+			local lang = {
+				"lua",
+				"fennel",
+				"c",
+				"cpp",
+				"javascript",
+				"typescript",
+				"cue",
+				"teal",
+				"json",
+				"yaml",
+				"bash",
+				"query",
+				"scheme",
+			}
+
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"lua",
@@ -145,6 +187,7 @@ local plugins = {
 					"yaml",
 					"bash",
 					"query",
+					"scheme",
 				},
 				highlight = {
 					enable = true,
@@ -159,6 +202,17 @@ local plugins = {
 				},
 				playground = {
 					enable = true,
+				},
+				rainbow = {
+					enable = true,
+					disable = (function()
+						local tmp_lang = table_copy(lang)
+						table_remval(tmp_lang, "scheme")
+						table_remval(tmp_lang, "fennel")
+						return tmp_lang
+					end)(),
+					extended_mode = true,
+					max_files_line = nil,
 				},
 			})
 		end,
