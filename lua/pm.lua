@@ -47,7 +47,7 @@ local plugins = {
 	{ "glepnir/lspsaga.nvim", event = "BufRead" },
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v1.x",
+		branch = "v2.x",
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"hrsh7th/nvim-cmp",
@@ -66,12 +66,11 @@ local plugins = {
 		},
 		config = function()
 			-- Config lsp-zero
-			local lsp = require("lsp-zero").preset({
-				name = "minimal",
-				set_lsp_keymaps = true,
-				manage_nvim_cmp = true,
-				suggest_lsp_servers = false,
-			})
+			local lsp = require("lsp-zero").preset({})
+
+            lsp.on_attach(function(_, bufnr)
+                lsp.default_keymaps({buffer = bufnr})
+            end)
 
 			lsp.setup_servers({
 				"clangd",
@@ -94,13 +93,13 @@ local plugins = {
 				},
 			})
 
-			lsp.configure("lua_ls", {
+			lsp.configure("lua_ls", lsp.nvim_lua_ls({
 				settings = {
 					workspace = {
 						library = { os.getenv("HOME") .. "/.luarocks/share/lua/5.4" },
 					},
 				},
-			})
+			}))
 
 			lsp.nvim_workspace()
 			lsp.setup()
@@ -109,8 +108,15 @@ local plugins = {
 			require("lspsaga").setup({})
 
 			local cmp = require("cmp")
+            local cmp_action = require("lsp-zero").cmp_action()
 
 			cmp.setup({
+                mapping = {
+                    ["<CR>"] = cmp.mapping.confirm({select = false}),
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+                    ["<C-b>"] = cmp_action.luasnip_jump_backward()
+                },
 				formatting = {
 					-- Config lspkind for cmp
 					format = require("lspkind").cmp_format({
@@ -154,7 +160,7 @@ local plugins = {
 		build = ":TSUpdate",
 		dependencies = {
 			"nvim-treesitter/playground",
-			"p00f/nvim-ts-rainbow",
+			"HiPhish/nvim-ts-rainbow2",
 		},
 		config = function()
 			local lang = {
@@ -211,8 +217,8 @@ local plugins = {
 						table_remval(tmp_lang, "fennel")
 						return tmp_lang
 					end)(),
-					extended_mode = true,
-					max_files_line = nil,
+					query = "rainbow-parens",
+					strategy = require("ts-rainbow").strategy.global,
 				},
 			})
 		end,
@@ -245,6 +251,17 @@ local plugins = {
 		name = "vim-arturo",
 		dir = os.getenv("HOME") .. "/project/vim-arturo",
 	},
+	{ "NoahTheDuke/vim-just" },
+    {
+        "christoomey/vim-tmux-navigator",
+        lazy = false
+    },
+    {
+        "vincent178/nvim-github-linker",
+        config = function()
+            require("nvim-github-linker").setup()
+        end
+    }
 }
 
 require("lazy").setup(plugins)

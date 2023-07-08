@@ -51,3 +51,9 @@ keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
 keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
 keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+
+-- For vim-tmux-navigator
+keymap("n", "<C-h>", "<cmd>TmuxNavigatorLeft<CR>")
+keymap("n", "<C-l>", "<cmd>TmuxNavigatorRight<CR>")
+keymap("n", "<C-j>", "<cmd>TmuxNavigatorDown<CR>")
+keymap("n", "<C-k>", "<cmd>TmuxNavigatorUp<CR>")
