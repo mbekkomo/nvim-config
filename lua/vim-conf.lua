@@ -4,10 +4,13 @@ local tbl = {
     expandtab = true,
     tabstop = 4,
     shiftwidth = 4,
+
+    -- Set clipboard to system
+    clipboard = "=unnamedplus"
 }
 
 for i, v in pairs(tbl) do
-    vim.opt[i] = v
+    vim.opt[i] = type(v) == "string" and v:gsub("=", vim.o[i]) or v
 end
 
 -- patch WSL clipboard
