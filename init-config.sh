@@ -15,7 +15,7 @@ if [[ -n "$NVIMLUA" && -n "$NVIMAFTERLUA" ]]; then
     exit
 fi
 
-SHELL="${SHELL##/}"
+SHELL="${SHELL##*/}"
 
 nvimpath="$(dirname "$(realpath "$prog")")"
 case "$SHELL" in
