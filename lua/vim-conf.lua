@@ -6,7 +6,13 @@ local tbl = {
     shiftwidth = 4,
 
     -- Set clipboard to system
-    clipboard = "=unnamedplus"
+    clipboard = "=unnamedplus",
+
+    -- Enable undofile
+    undofile = true,
+
+    -- Enable exrc
+    exrc = true,
 }
 
 for i, v in pairs(tbl) do
@@ -33,20 +39,20 @@ end
 
 local function cmd_fmt(cmd_name, cmd_str, save)
     return save and "S" .. cmd_name or cmd_name,
-    function(opts)
-        local filename = opts.fargs[1] or nil
+        function(opts)
+            local filename = opts.fargs[1] or nil
 
-        if save and vim.fn.getbufinfo("%")[1].changed == 1 then
-            vim.cmd("w")
-        end
+            if save and vim.fn.getbufinfo("%")[1].changed == 1 then
+                vim.cmd("w")
+            end
 
-        if not filename then
-            vim.cmd("!" .. cmd_str .. " %")
-        else
-            vim.cmd("!" .. cmd_str .. " " .. table.concat(opts.fargs, " "))
-        end
-    end,
-    { nargs = "*" }
+            if not filename then
+                vim.cmd("!" .. cmd_str .. " %")
+            else
+                vim.cmd("!" .. cmd_str .. " " .. table.concat(opts.fargs, " "))
+            end
+        end,
+        { nargs = "*" }
 end
 
 vim.api.nvim_create_user_command(cmd_fmt("Stylua", "stylua", true))
