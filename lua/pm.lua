@@ -256,33 +256,16 @@ local plugins = {
 				"fennel",
 				"c",
 				"cpp",
-				"javascript",
-				"typescript",
-				"cue",
 				"teal",
 				"json",
 				"yaml",
 				"bash",
-				"query",
 				"scheme",
+                "html"
 			}
 
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"lua",
-					"fennel",
-					"c",
-					"cpp",
-					"javascript",
-					"typescript",
-					"cue",
-					"teal",
-					"json",
-					"yaml",
-					"bash",
-					"query",
-					"scheme",
-				},
+				ensure_installed = lang,
 				highlight = {
 					enable = true,
 					disable = function(_, buf)
