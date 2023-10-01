@@ -1,0 +1,3 @@
+[*.lua]
+indent_size = 4
+indnet_style = space
