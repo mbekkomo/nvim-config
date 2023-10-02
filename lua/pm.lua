@@ -151,7 +151,7 @@ local plugins = {
 						cmd = { "n", "run", "16", "/usr/local/bin/grammarly-languageserver", "--stdio" },
 					})
 
-					emmet_ls.setup({
+					emmet_language_server.setup({
 						filetypes = {
 							"astro",
 							"css",
@@ -270,7 +270,7 @@ local plugins = {
 			local pc = require("nvim-treesitter.parsers").get_parser_configs()
 			pc.etlua = {
 				install_info = {
-					url = "https://github.com/kodumbeats/tree-sitter-embedded-template",
+					url = "~/project/tree-sitter-etlua",
 					files = { "src/parser.c" },
 					branch = "etlua",
 				},
