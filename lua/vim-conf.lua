@@ -47,9 +47,9 @@ local function cmd_fmt(cmd_name, cmd_str, save)
             end
 
             if not filename then
-                vim.cmd("!" .. cmd_str .. " %")
+                vim.cmd("silent !" .. cmd_str .. " %")
             else
-                vim.cmd("!" .. cmd_str .. " " .. table.concat(opts.fargs, " "))
+                vim.cmd("silent !" .. cmd_str .. " " .. table.concat(opts.fargs, " "))
             end
         end,
         { nargs = "*" }
