@@ -1,5 +1,6 @@
 vim.loader.enable()
 vim.opt.shell = "bash"
+vim.uv = vim.loop
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
