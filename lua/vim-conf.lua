@@ -25,9 +25,11 @@ for i, v in pairs(tbl) do
 end
 
 -- patch WSL clipboard
+---@diagnostic disable-next-line:undefined-field
+local uname = vim.loop.os_uname()
 local ok = os.rename("/data/data/com.termux/", "/data/data/com.termux/")
 
-if not ok then
+if not ok and (uname.sysname == "Linux" and uname.release:find("Microsoft")) then
     vim.g.clipboard = {
         name = "WslClipboard",
         copy = {
