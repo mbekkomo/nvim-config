@@ -26,7 +26,7 @@ end
 gls.left[1] = {
     RainbowRed = {
         provider = function()
-            return "▊ "
+            return "󰍟 "
         end,
         highlight = { colors.blue, colors.bg },
     },
@@ -58,7 +58,7 @@ gls.left[2] = {
                 t = colors.red,
             }
             vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()])
-            return "  "
+            return "OωO  "
         end,
         highlight = { colors.red, colors.bg, "bold" },
     },
@@ -209,7 +209,7 @@ gls.right[7] = {
 gls.right[8] = {
     RainbowBlue = {
         provider = function()
-            return " ▊"
+            return "  󰍞"
         end,
         highlight = { colors.blue, colors.bg },
     },
