@@ -1,7 +1,7 @@
 return {
     { "xigoi/vim-arturo" },
     { "edubart/nelua-vim" },
-    { "batpakin/janet.vim" },
+    { "janet-lang/janet.vim" },
     { "NoahTheDuke/vim-just" },
     { "VaiN474/vim-etlua" },
 }
