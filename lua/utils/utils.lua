@@ -52,9 +52,20 @@ local function is_executable(cmd)
     return vim.fn.executable(cmd) == 1
 end
 
+
+---@param mode string|table
+---@param lhs string
+---@param rhs string|function
+---@param opts table?
+---@return table
+local function silent_keymap(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", { silent = true }, opts or {}))
+end
+
 return {
     table_copy = table_copy,
     table_remval = table_remval,
     with = with,
     is_executable = is_executable,
+    silent_keymap = silent_keymap,
 }

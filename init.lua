@@ -1,25 +1,18 @@
-vim.loader.enable()
-vim.opt.shell = "bash"
-vim.uv = vim.loop
+vim.g.mapleader = " "
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+local config_path = vim.fn.stdpath("config") .. "/lua/config"
+
+require("config.lazy")({})
+
+---@diagnostic disable-next-line:undefined-field
+for name in vim.uv.fs_scandir_next, vim.uv.fs_scandir(config_path) do
+    if not name:match("%.lua$") then break end
+
+    local filename = config_path .. "/" .. name
+    local fn, err = loadfile(filename, "t")
+    if not fn and err then
+        vim.notify(("failed loading config [%s]: %s"):format(filename, err), vim.log.levels.WARN)
+    end
+
+    fn() ---@diagnostic disable-line:need-check-nil
 end
-
-vim.opt.rtp:prepend(lazypath)
-
-vim.g.mapleader = " " -- make sure mapping is correct
-
-local cmd = io.popen("ls $NVIMLUA")
-for f in cmd:lines() do
-    pcall(require, f:gsub("%.lua$", ""))
-end
-cmd:close()

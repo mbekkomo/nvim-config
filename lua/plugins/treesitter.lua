@@ -11,6 +11,7 @@ return {
         config = function()
             local lang = {
                 "lua",
+                "janet_simple",
                 "fennel",
                 "c",
                 "cpp",
@@ -34,6 +35,15 @@ return {
                     branch = "main",
                 },
                 filetype = "etlua",
+            }
+
+            pc.just = {
+                install_info = {
+                    url = "https://github.com/IndianBoy42/tree-sitter-just",
+                    files = { "src/parser.c", "src/scanner.cc" },
+                    branch = "main",
+                },
+                filetype = "just"
             }
 
             require("nvim-treesitter.configs").setup({

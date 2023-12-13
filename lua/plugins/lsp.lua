@@ -1,7 +1,47 @@
 local utils = require("utils.utils")
-local with = utils.with
+local with, silent_keymap = utils.with, utils.silent_keymap
 
 return {
+    {
+        "nvimdev/lspsaga.nvim",
+        event = "LspAttach",
+        config = function()
+            silent_keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+
+            silent_keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+
+            silent_keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+            silent_keymap("n", "gR", "<cmd>Lspsaga rename ++project<CR>")
+
+            silent_keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
+            silent_keymap("n", "gD", "<cmd>Lspsaga goto_definition<CR>")
+            silent_keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
+            silent_keymap("n", "gT", "<cmd>Lspsaga goto_type_definition<CR>")
+
+            silent_keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+            silent_keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+            silent_keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+            silent_keymap("n", "<leader>pe", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+            silent_keymap("n", "<leader>ne", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
+            silent_keymap("n", "<leader>Pe", function()
+                require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+            end)
+            silent_keymap("n", "<leader>Ne", function()
+                require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+            end)
+
+            silent_keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+
+            silent_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+            silent_keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
+
+            silent_keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+            silent_keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+
+            silent_keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+        end
+    },
     {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v3.x",
@@ -19,7 +59,6 @@ return {
             "onsails/lspkind.nvim",
             "uga-rosa/cmp-dictionary",
             "PaterJason/cmp-conjure",
-            { "nvimdev/lspsaga.nvim", event = "LspAttach" },
         },
         config = function()
             local cmp = require("cmp")
@@ -108,15 +147,27 @@ return {
                 -- Config lspsaga
                 require("lspsaga").setup({})
 
+                local cmp_action = require("lsp-zero").cmp_action()
                 require("luasnip.loaders.from_vscode").lazy_load()
 
                 cmp.setup(vim.tbl_deep_extend("force", cmp.get_config(), {
+                    mapping = cmp.mapping.preset.insert({
+                        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+
+                        ["<C-Space>"] = cmp.mapping.complete(),
+
+                        ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+                        ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+
+                        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+                        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+                    }),
                     formatting = {
                         fields = { "abbr", "kind", "menu" },
                         format = require("lspkind").cmp_format({
                             mode = "symbol_text",
                             maxwidth = 50,
-                            ellipsis_char = "...",
+                            ellipsis_char = "~",
                         }),
                     },
                     sources = {
@@ -140,7 +191,7 @@ return {
             cmp_dict.setup({ async = true })
             cmp_dict.switcher({
                 filetype = {
-                    markdown = { os.getenv("NVIMDIR") .. "/dict/en.dict", os.getenv("NVIMDIR") .. "/dict/id.dict" },
+                    markdown = { vim.fn.stdpath("config") .. "/dict/en.dict", vim.fn.stdpath("config") .. "/dict/id.dict" },
                 },
             })
 

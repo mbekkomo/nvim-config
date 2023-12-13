@@ -1,5 +1,3 @@
-vim.opt.rtp:prepend(lazypath)
-
 if vim.loader then
 	vim.loader.enable()
 end
@@ -16,3 +14,19 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
+
+vim.opt.rtp:prepend(lazypath)
+
+return function(opts)
+    opts = vim.tbl_deep_extend("force", {
+        spec = {
+            { import = "plugins" }
+        },
+        install = {
+            colorscheme = { "catppuccin", "habamax" }
+        },
+    }, opts or {})
+
+    require("lazy").setup(opts)
+end
+
