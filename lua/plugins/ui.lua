@@ -37,14 +37,6 @@ return {
             end
 
             gls.left[1] = {
-                RainbowRed = {
-                    provider = function()
-                        return "󰍟 "
-                    end,
-                    highlight = { colors.blue, colors.bg },
-                },
-            }
-            gls.left[2] = {
                 ViMode = {
                     provider = function()
                         -- auto change color according the vim mode
@@ -70,12 +62,20 @@ return {
                             ["!"] = colors.red,
                             t = colors.red,
                         }
-                        vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()])
-                        return "OωO  "
+                        vim.cmd("hi GalaxyViMode guibg=" .. mode_color[vim.fn.mode()])
+                        return "  🐱 "
                     end,
-                    highlight = { colors.red, colors.bg, "bold" },
+                    highlight = { colors.fg, colors.red, "bold" },
                 },
             }
+
+            gls.left[2] = {
+                Separator = {
+                    provider = function() return " " end,
+                    highlight = { "NONE", colors.bg },
+                }
+            }
+
             gls.left[3] = {
                 FileSize = {
                     provider = "FileSize",
@@ -109,22 +109,13 @@ return {
             }
 
             gls.left[7] = {
-                PerCent = {
-                    provider = "LinePercent",
-                    separator = " ",
-                    separator_highlight = { "NONE", colors.bg },
-                    highlight = { colors.fg, colors.bg, "bold" },
-                },
-            }
-
-            gls.left[8] = {
                 DiagnosticError = {
                     provider = "DiagnosticError",
                     icon = "  ",
                     highlight = { colors.red, colors.bg },
                 },
             }
-            gls.left[9] = {
+            gls.left[8] = {
                 DiagnosticWarn = {
                     provider = "DiagnosticWarn",
                     icon = "  ",
@@ -132,7 +123,7 @@ return {
                 },
             }
 
-            gls.left[10] = {
+            gls.left[9] = {
                 DiagnosticHint = {
                     provider = "DiagnosticHint",
                     icon = "  ",
@@ -140,7 +131,7 @@ return {
                 },
             }
 
-            gls.left[11] = {
+            gls.left[10] = {
                 DiagnosticInfo = {
                     provider = "DiagnosticInfo",
                     icon = "  ",
@@ -169,7 +160,7 @@ return {
             gls.right[3] = {
                 GitIcon = {
                     provider = function()
-                        return "  "
+                        return " "
                     end,
                     condition = require("galaxyline.provider_vcs").check_git_workspace,
                     separator = " ",
@@ -216,15 +207,6 @@ return {
                     condition = checkwidth,
                     icon = "  ",
                     highlight = { colors.red, colors.bg },
-                },
-            }
-
-            gls.right[8] = {
-                RainbowBlue = {
-                    provider = function()
-                        return "  󰍞"
-                    end,
-                    highlight = { colors.blue, colors.bg },
                 },
             }
 
