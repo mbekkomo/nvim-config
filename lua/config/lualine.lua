@@ -3,11 +3,11 @@ local cond = require("utils.conditions")
 
 local config = {
   options = {
-    component_separators = '',
-    section_separators = '',
+    component_separators = "",
+    section_separators = "",
     theme = {
-      normal = { c = { fg = C.text, bg = C.surface0 } },
-      inactive = { c = { fg = C.text, bg = C.surface0 } },
+      normal = { c = { fg = C.text, bg = "#45475a" } },
+      inactive = { c = { fg = C.text, bg = "#45475a" } },
     },
   },
   sections = {
@@ -35,6 +35,14 @@ end
 local function right(component)
     config.sections.lualine_x[#config.sections.lualine_x+1] = component
 end
+
+left {
+    function()
+        return "▌"
+    end,
+    color = { fg = C.blue },
+    padding = 0,
+}
 
 left {
     function()
@@ -66,6 +74,7 @@ left {
 
         return { fg = mcolor[vim.fn.mode()], gui = "bold" }
     end,
+    padding = { right = 1 },
 }
 
 left {
@@ -99,9 +108,9 @@ left {
 }
 
 left {
-    'diagnostics',
-    sources = { 'nvim_diagnostic' },
-    symbols = { error = ' ', warn = ' ', info = ' ', hint = "󰌵 " },
+    "diagnostics",
+    sources = { "nvim_diagnostic" },
+    symbols = { error = " ", warn = " ", info = " ", hint = "󰌵 " },
     diagnostics_color = {
         color_error = { fg = C.red },
         color_warn = { fg = C.yellow },
@@ -113,18 +122,27 @@ right {
     "o:encoding",
     cond = cond.hide_in_width,
     fmt = string.upper,
-    color = { fg = C.maroon, gui = 'bold' },
+    color = { fg = C.maroon, gui = "bold" },
 }
 
 right {
-    'fileformat',
-    color = { fg = C.maroon, gui = 'bold' },
+    "fileformat",
+    color = { fg = C.maroon, gui = "bold" },
 }
 
 right {
-    'branch',
-    icon = '',
-    color = { fg = C.lavender, gui = 'bold' },
+    "branch",
+    icon = "",
+    color = { fg = C.lavender, gui = "bold" },
+    padding = { left = 1 },
+}
+
+right {
+    function()
+        return "▐"
+    end,
+    color = { fg = C.blue },
+    padding = 0
 }
 
 return config
