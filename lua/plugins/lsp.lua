@@ -1,5 +1,5 @@
 local utils = require("utils.utils")
-local with, silent_keymap = utils.with, utils.silent_keymap
+local silent_keymap = utils.silent_keymap
 
 return {
     {
@@ -62,128 +62,133 @@ return {
         },
         config = function()
             local cmp = require("cmp")
+            local lspconf = require("lspconfig")
+            local zero = require("lsp-zero")
 
-            -- Config lsp-zero
-            ---@diagnostic disable:undefined-global
-            with(function()
-                on_attach(function(_, bufnr)
-                    default_keymaps({ buffer = bufnr })
-                end)
 
-                set_sign_icons({
-                    error = "→",
-                    warn = "→",
-                    hint = "󰌵→",
-                    info = "→",
-                })
+            zero.on_attach(function(_, bufnr)
+                zero.default_keymaps({ buffer = bufnr })
+            end)
 
-                vim.diagnostic.config({
-                    virtual_text = false,
-                    severity_sort = true,
-                    float = {
-                        style = "minimal",
-                        border = "rounded",
-                        source = "always",
-                        header = "",
-                        prefix = "",
+            zero.set_sign_icons({
+                error = "→",
+                warn = "→",
+                hint = "󰌵→",
+                info = "→",
+            })
+
+            vim.diagnostic.config({
+                virtual_text = false,
+                severity_sort = true,
+                float = {
+                    style = "minimal",
+                    border = "rounded",
+                    source = "always",
+                    header = "",
+                    prefix = "",
+                },
+            })
+
+            require("lspconfig.configs").glas = {
+                default_config = {
+                    cmd = { "glas" },
+                    filetypes = { "gleam" },
+                    root_dir = lspconf.util.root_pattern("gleam.toml", ".git"),
+                    settings = {}
+                }
+            }
+
+            zero.setup_servers({
+                "clangd",
+                "grammarly",
+                "teal_ls",
+                "jsonls",
+                "tsserver",
+                "bashls",
+                "glas",
+                --"gleam",
+            })
+
+            lspconf.yamlls.setup({
+                settings = {
+                    yaml = {
+                        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                        ["https://github.com/catppuccin/catppuccin/raw/main/resources/ports.schema.json"] = "/resources/ports.yml",
                     },
-                })
+                },
+            })
 
-                setup_servers({
-                    "clangd",
-                    "grammarly",
-                    "teal_ls",
-                    "jsonls",
-                    "tsserver",
-                    "bashls",
-                    "gleam",
-                })
+            lspconf.lua_ls.setup(zero.nvim_lua_ls({
+                settings = {
+                    workspace = {
+                        library = { os.getenv("HOME") .. "/.local/share/lua/any" },
+                    },
+                },
+            }))
 
-                local nvim_lua_ls = nvim_lua_ls
-                with(function()
-                    yamlls.setup({
-                        settings = {
-                            yaml = {
-                                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                                ["https://github.com/catppuccin/catppuccin/raw/main/resources/ports.schema.json"] = "/resources/ports.yml",
-                            },
-                        },
-                    })
+            lspconf.grammarly.setup({
+                cmd = { "n", "run", "16", "/usr/local/bin/grammarly-languageserver", "--stdio" },
+            })
 
-                    lua_ls.setup(nvim_lua_ls({
-                        settings = {
-                            workspace = {
-                                library = { os.getenv("HOME") .. "/.local/share/lua/any" },
-                            },
-                        },
-                    }))
+            lspconf.emmet_language_server.setup({
+                filetypes = {
+                    "astro",
+                    "css",
+                    "eruby",
+                    "html",
+                    "htmldjango",
+                    "javascriptreact",
+                    "less",
+                    "pug",
+                    "sass",
+                    "scss",
+                    "svelte",
+                    "typescriptreact",
+                    "vue",
+                    "etlua",
+                },
+            })
 
-                    grammarly.setup({
-                        cmd = { "n", "run", "16", "/usr/local/bin/grammarly-languageserver", "--stdio" },
-                    })
+            zero.setup()
 
-                    emmet_language_server.setup({
-                        filetypes = {
-                            "astro",
-                            "css",
-                            "eruby",
-                            "html",
-                            "htmldjango",
-                            "javascriptreact",
-                            "less",
-                            "pug",
-                            "sass",
-                            "scss",
-                            "svelte",
-                            "typescriptreact",
-                            "vue",
-                            "etlua",
-                        },
-                    })
-                end, require("lspconfig"))
+            -- Config lspsaga
+            require("lspsaga").setup({})
 
-                setup()
+            local cmp_action = require("lsp-zero").cmp_action()
+            require("luasnip.loaders.from_vscode").lazy_load()
 
-                -- Config lspsaga
-                require("lspsaga").setup({})
+            cmp.setup(vim.tbl_deep_extend("force", cmp.get_config(), {
+                mapping = cmp.mapping.preset.insert({
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
 
-                local cmp_action = require("lsp-zero").cmp_action()
-                require("luasnip.loaders.from_vscode").lazy_load()
+                    ["<C-Space>"] = cmp.mapping.complete(),
 
-                cmp.setup(vim.tbl_deep_extend("force", cmp.get_config(), {
-                    mapping = cmp.mapping.preset.insert({
-                        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+                    ["<C-b>"] = cmp_action.luasnip_jump_backward(),
 
-                        ["<C-Space>"] = cmp.mapping.complete(),
-
-                        ["<C-f>"] = cmp_action.luasnip_jump_forward(),
-                        ["<C-b>"] = cmp_action.luasnip_jump_backward(),
-
-                        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+                }),
+                formatting = {
+                    fields = { "abbr", "kind", "menu" },
+                    format = require("lspkind").cmp_format({
+                        mode = "symbol_text",
+                        maxwidth = 50,
+                        ellipsis_char = "~",
                     }),
-                    formatting = {
-                        fields = { "abbr", "kind", "menu" },
-                        format = require("lspkind").cmp_format({
-                            mode = "symbol_text",
-                            maxwidth = 50,
-                            ellipsis_char = "~",
-                        }),
-                    },
-                    sources = {
-                        { name = "dictionary", keyword_length = 2 },
+                },
+                sources = {
+                    { name = "dictionary", keyword_length = 2 },
 
-                        { name = "conjure" },
+                    { name = "conjure" },
 
-                        { name = "nvim_lsp" },
-                        { name = "buffer" },
-                        { name = "luasnip" },
-                        { name = "nvim_lua" },
-                        { name = "path" },
-                    },
-                }))
-            end, require("lsp-zero"))
-            ---@diagnostic enable:undefined-global
+                    { name = "nvim_lsp" },
+                    { name = "buffer" },
+                    { name = "luasnip" },
+                    { name = "nvim_lua" },
+                    { name = "path" },
+                },
+            }))
 
             -- Config cmp-dictionary
             local cmp_dict = require("cmp_dictionary")
