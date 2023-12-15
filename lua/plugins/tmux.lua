@@ -12,5 +12,5 @@ return {
             silent_keymap("n", "<C-t><Right>", ":<C-U>TmuxNavigateRight<CR>")
             silent_keymap("n", "<C-t>\\", ":<C-U>TmuxNavigatePrevious<CR>")
         end,
-    }
+    },
 }

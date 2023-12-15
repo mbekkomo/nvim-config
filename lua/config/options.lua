@@ -5,8 +5,8 @@ o.number = true
 o.shell = "bash"
 
 o.autoindent = true
-o.expandtab  = true
-o.tabstop    = 4
+o.expandtab = true
+o.tabstop = 4
 o.shiftwidth = 4
 
 o.clipboard = "unnamedplus"
@@ -15,7 +15,7 @@ o.undofile = true
 
 o.exrc = true
 
-o.mouse      = o.mouse .. "a"
+o.mouse = o.mouse .. "a"
 o.mousemodel = "extend"
 
 o.termguicolors = true
@@ -52,7 +52,7 @@ for usr_cmd, sh_cmd in pairs(cmd_fmt) do
         vim.cmd(("silent !%s %s %s"):format(sh_cmd, filename, table.concat(opts.fargs, " ")))
     end, { nargs = "*" })
 
-    vim.api.nvim_create_user_command("S"..usr_cmd, function(opts)
+    vim.api.nvim_create_user_command("S" .. usr_cmd, function(opts)
         local filename = table.remove(opts.fargs, 1) or "%"
 
         vim.cmd(("w|silent !%s %s %s"):format(sh_cmd, filename, table.concat(opts.fargs, " ")))

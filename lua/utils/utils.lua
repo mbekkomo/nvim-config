@@ -52,7 +52,6 @@ local function is_executable(cmd)
     return vim.fn.executable(cmd) == 1
 end
 
-
 ---@param mode string|table
 ---@param lhs string
 ---@param rhs string|function

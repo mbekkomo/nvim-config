@@ -43,7 +43,7 @@ return {
                     files = { "src/parser.c", "src/scanner.cc" },
                     branch = "main",
                 },
-                filetype = "just"
+                filetype = "just",
             }
 
             require("nvim-treesitter.configs").setup({

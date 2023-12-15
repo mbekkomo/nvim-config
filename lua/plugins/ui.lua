@@ -13,5 +13,5 @@ return {
         main = "lualine",
         config = true,
         opts = require("config.lualine"),
-    }
+    },
 }

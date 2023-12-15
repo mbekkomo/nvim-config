@@ -1,5 +1,5 @@
 if vim.loader then
-	vim.loader.enable()
+    vim.loader.enable()
 end
 vim.uv = vim.loop
 
@@ -20,13 +20,12 @@ vim.opt.rtp:prepend(lazypath)
 return function(opts)
     opts = vim.tbl_deep_extend("force", {
         spec = {
-            { import = "plugins" }
+            { import = "plugins" },
         },
         install = {
-            colorscheme = { "catppuccin", "habamax" }
+            colorscheme = { "catppuccin", "habamax" },
         },
     }, opts or {})
 
     require("lazy").setup(opts)
 end
-

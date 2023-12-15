@@ -40,7 +40,7 @@ return {
             silent_keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
             silent_keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
-        end
+        end,
     },
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -64,7 +64,6 @@ return {
             local cmp = require("cmp")
             local lspconf = require("lspconfig")
             local zero = require("lsp-zero")
-
 
             zero.on_attach(function(_, bufnr)
                 zero.default_keymaps({ buffer = bufnr })
@@ -94,8 +93,8 @@ return {
                     cmd = { "glas" },
                     filetypes = { "gleam" },
                     root_dir = lspconf.util.root_pattern("gleam.toml", ".git"),
-                    settings = {}
-                }
+                    settings = {},
+                },
             }
 
             zero.setup_servers({
@@ -196,7 +195,10 @@ return {
             cmp_dict.setup({ async = true })
             cmp_dict.switcher({
                 filetype = {
-                    markdown = { vim.fn.stdpath("config") .. "/dict/en.dict", vim.fn.stdpath("config") .. "/dict/id.dict" },
+                    markdown = {
+                        vim.fn.stdpath("config") .. "/dict/en.dict",
+                        vim.fn.stdpath("config") .. "/dict/id.dict",
+                    },
                 },
             })
 
