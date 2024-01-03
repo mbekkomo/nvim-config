@@ -151,7 +151,11 @@ return {
             zero.setup()
 
             -- Config lspsaga
-            require("lspsaga").setup({})
+            require("lspsaga").setup({
+                ui = {
+                    kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+                },
+            })
 
             local cmp_action = require("lsp-zero").cmp_action()
             require("luasnip.loaders.from_vscode").lazy_load()

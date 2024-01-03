@@ -60,7 +60,7 @@ for usr_cmd, sh_cmd in pairs(cmd_fmt) do
 end
 
 if g.neovide then
-    o.guifont = "JetBrainsMono Nerd Font Mono:h10"
-    g.neovide_transparency = 0.8
+    o.guifont = "Hasklug Nerd Font Mono:h10"
+    g.neovide_transparency = 0.95
     g.neovide_hide_mouse_when_typing = true
 end

@@ -3,10 +3,12 @@ local is_executable = require("utils.utils").is_executable
 return {
     {
         "andweeb/presence.nvim",
-        cond = is_executable(os.getenv("DISCORD_PATH") or "discord"),
+        cond = is_executable("discord"),
         config = function()
             require("presence").setup({
-                client_id = os.getenv("DISCORD_CLIENT_ID"),
+                auto_update = true,
+                main_mage = "file",
+                neovim_image_text = "Nyaaa! Huww do me exwit Vim TωT",
 
                 editing_text = "Me ewditing %s :3",
                 file_explorer_text = "Me bwosing dwirectwowy %s OωO",
