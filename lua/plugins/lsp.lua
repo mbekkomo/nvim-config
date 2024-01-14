@@ -55,7 +55,7 @@ return {
             "hrsh7th/cmp-nvim-lua",
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
-            "windwp/nvim-autopairs",
+            { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
             "onsails/lspkind.nvim",
             "uga-rosa/cmp-dictionary",
             "PaterJason/cmp-conjure",
@@ -99,7 +99,6 @@ return {
 
             zero.setup_servers({
                 "clangd",
-                "grammarly",
                 "teal_ls",
                 "jsonls",
                 "tsserver",
@@ -124,10 +123,6 @@ return {
                     },
                 },
             }))
-
-            lspconf.grammarly.setup({
-                cmd = { "n", "run", "16", "/usr/local/bin/grammarly-languageserver", "--stdio" },
-            })
 
             lspconf.emmet_language_server.setup({
                 filetypes = {
@@ -206,8 +201,11 @@ return {
                 },
             })
 
-            -- Config autopairs
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            cmp_autopairs.filetypes = vim.tbl_deep_extend("force", cmp_autopairs.filetypes, {
+                bash = false,
+                sh = false
+            })
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
     },

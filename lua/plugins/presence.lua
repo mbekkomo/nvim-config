@@ -9,6 +9,7 @@ return {
                 auto_update = true,
                 main_mage = "file",
                 neovim_image_text = "Nyaaa! Huww do me exwit Vim TωT",
+                --log_level = "debug",
 
                 editing_text = "Me ewditing %s :3",
                 file_explorer_text = "Me bwosing dwirectwowy %s OωO",

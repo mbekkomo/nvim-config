@@ -5,11 +5,8 @@ return {
     {
         "romgrk/barbar.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
-        config = function()
-            require("bufferline").setup({
-                icons = { modified = { button = "£" } },
-            })
-        end,
+        main = "bufferline",
+        config = { icons = { modified = { button = "£" } } }
     },
     {
         "nvim-lualine/lualine.nvim",
