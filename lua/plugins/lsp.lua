@@ -116,13 +116,7 @@ return {
                 },
             })
 
-            lspconf.lua_ls.setup(zero.nvim_lua_ls({
-                settings = {
-                    workspace = {
-                        library = { os.getenv("HOME") .. "/.local/share/lua/any" },
-                    },
-                },
-            }))
+            lspconf.lua_ls.setup(zero.nvim_lua_ls())
 
             lspconf.emmet_language_server.setup({
                 filetypes = {

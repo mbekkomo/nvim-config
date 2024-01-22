@@ -1,0 +1,104 @@
+[18:33:45.543][info] [#0:/usr/lib/lua-language-server/main.lua:66]: Lua Lsp startup, root: 	/usr/lib/lua-language-server
+[18:33:45.543][info] [#0:/usr/lib/lua-language-server/main.lua:67]: ROOT:	/usr/lib/lua-language-server
+[18:33:45.543][info] [#0:/usr/lib/lua-language-server/main.lua:68]: LOGPATH:	./.luals
+[18:33:45.543][info] [#0:/usr/lib/lua-language-server/main.lua:69]: METAPATH:	/tmp/lua-language-server-1000/instance.TSts/meta
+[18:33:45.543][info] [#0:/usr/lib/lua-language-server/main.lua:70]: VERSION:	<Unknown>
+[18:33:45.682][info] [#0:script/language.lua:137]: VSC language: nil
+[18:33:45.682][info] [#0:script/language.lua:138]: LS  language: en-us
+[18:33:45.683][info] [#0:script/client.lua:657]: Client init	{
+  rootUri = "file:///home/komothecat/.config/nvim/./docs"
+}
+[18:33:45.683][info] [#0:script/language.lua:137]: VSC language: nil
+[18:33:45.683][info] [#0:script/language.lua:138]: LS  language: en-us
+[18:33:45.683][info] [#0:script/workspace/workspace.lua:38]: Workspace init root: 	file:///home/komothecat/.config/nvim/./docs
+[18:33:45.683][info] [#0:script/workspace/workspace.lua:42]: Log path: 	./.luals/file_home_komothecat_.config_nvim_._docs.log
+[18:33:45.683][info] [#0:script/workspace/workspace.lua:48]: Workspace create: 	file:///home/komothecat/.config/nvim/./docs
+[18:33:45.687][warn] [#0:script/config/loader.lua:116]: No config?	nil
+[18:33:45.688][warn] [#0:script/config/loader.lua:116]: No config?	nil
+[18:33:45.688][info] [#0:script/provider/provider.lua:61]: Load config from client	fallback
+[18:33:45.688][info] [#0:script/provider/provider.lua:62]: nil
+[18:33:45.688][info] [#0:script/library.lua:212]: Init builtin library at:	file:///home/komothecat/.config/nvim/./docs
+[18:33:45.726][info] [#0:script/library.lua:212]: Init builtin library at:	nil
+[18:33:45.754][info] [#0:script/workspace/workspace.lua:324]: Preload start:	file:///home/komothecat/.config/nvim/./docs
+[18:33:45.769][info] [#0:script/workspace/workspace.lua:330]: Scan files at:	file:///home/komothecat/.config/nvim/./docs
+[18:33:45.770][info] [#0:script/workspace/workspace.lua:324]: Preload start:	<fallback>
+[18:33:45.778][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/io.lua
+[18:33:45.778][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/io.lua
+[18:33:45.779][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/basic.lua
+[18:33:45.779][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/basic.lua
+[18:33:45.779][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/math.lua
+[18:33:45.780][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/math.lua
+[18:33:45.780][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/package.lua
+[18:33:45.780][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/package.lua
+[18:33:45.780][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/builtin.lua
+[18:33:45.781][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/builtin.lua
+[18:33:45.781][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/utf8.lua
+[18:33:45.781][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/utf8.lua
+[18:33:45.782][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/coroutine.lua
+[18:33:45.782][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/coroutine.lua
+[18:33:45.782][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/os.lua
+[18:33:45.782][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/os.lua
+[18:33:45.783][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/table.lua
+[18:33:45.783][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/table.lua
+[18:33:45.783][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/debug.lua
+[18:33:45.784][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/debug.lua
+[18:33:45.784][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/string.lua
+[18:33:45.784][info] [#0:script/workspace/workspace.lua:353]: Scan library at:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/string.lua
+[18:33:45.784][info] [#0:script/workspace/workspace.lua:379]: Found 11 files at:	<fallback>
+[18:33:45.785][info] [#0:script/workspace/loading.lua:161]: Load files from disk:	<fallback>
+[18:33:45.785][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/string.lua , size = 6.341 KB
+[18:33:45.802][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/string.lua
+[18:33:45.806][info] [#0:script/workspace/workspace.lua:379]: Found 11 files at:	file:///home/komothecat/.config/nvim/./docs
+[18:33:45.806][info] [#0:script/workspace/loading.lua:161]: Load files from disk:	file:///home/komothecat/.config/nvim/./docs
+[18:33:45.807][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/string.lua
+[18:33:45.807][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/string.lua
+[18:33:45.807][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/debug.lua , size = 7.637 KB
+[18:33:45.836][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/debug.lua
+[18:33:45.836][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/debug.lua
+[18:33:45.836][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/debug.lua
+[18:33:45.836][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/table.lua , size = 4.230 KB
+[18:33:45.846][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/table.lua
+[18:33:45.847][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/table.lua
+[18:33:45.847][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/table.lua
+[18:33:45.847][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/os.lua , size = 5.600 KB
+[18:33:45.861][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/os.lua
+[18:33:45.861][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/os.lua
+[18:33:45.861][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/os.lua
+[18:33:45.861][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/coroutine.lua , size = 2.590 KB
+[18:33:45.870][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/coroutine.lua
+[18:33:45.870][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/coroutine.lua
+[18:33:45.870][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/coroutine.lua
+[18:33:45.870][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/utf8.lua , size = 2.386 KB
+[18:33:45.904][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/utf8.lua
+[18:33:45.904][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/utf8.lua
+[18:33:45.904][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/utf8.lua
+[18:33:45.905][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/builtin.lua , size = 0.302 KB
+[18:33:45.909][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/builtin.lua
+[18:33:45.910][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/builtin.lua
+[18:33:45.910][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/builtin.lua
+[18:33:45.911][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/package.lua , size = 2.944 KB
+[18:33:45.919][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/package.lua
+[18:33:45.919][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/package.lua
+[18:33:45.919][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/package.lua
+[18:33:45.920][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/math.lua , size = 8.509 KB
+[18:33:45.940][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/math.lua
+[18:33:45.940][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/math.lua
+[18:33:45.941][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/math.lua
+[18:33:45.941][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/basic.lua , size = 15.377 KB
+[18:33:46.004][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/basic.lua
+[18:33:46.004][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/basic.lua
+[18:33:46.004][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/basic.lua
+[18:33:46.005][info] [#0:script/workspace/loading.lua:101]: Preload file at: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/io.lua , size = 6.364 KB
+[18:33:46.025][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/io.lua
+[18:33:46.025][info] [#0:script/workspace/loading.lua:89]: Skip loaded file: file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/io.lua
+[18:33:46.026][info] [#0:script/workspace/loading.lua:113]: ++++As library of:	file:///tmp/lua-language-server-1000/instance.TSts/meta/Lua%205.4%20en-us%20utf8/io.lua
+[18:33:46.026][info] [#0:script/workspace/loading.lua:173]: Loaded files takes [0.180] sec: <fallback>
+[18:33:46.026][info] [#0:script/workspace/loading.lua:182]: Compile files takes [0.000] sec: <fallback>
+[18:33:46.026][info] [#0:script/workspace/loading.lua:183]: Loaded finish:	<fallback>
+[18:33:46.026][info] [#0:script/workspace/workspace.lua:381]: Preload finish at:	<fallback>
+[18:33:46.030][info] [#0:script/workspace/loading.lua:173]: Loaded files takes [0.167] sec: file:///home/komothecat/.config/nvim/./docs
+[18:33:46.030][info] [#0:script/workspace/loading.lua:182]: Compile files takes [0.000] sec: file:///home/komothecat/.config/nvim/./docs
+[18:33:46.030][info] [#0:script/workspace/loading.lua:183]: Loaded finish:	file:///home/komothecat/.config/nvim/./docs
+[18:33:46.030][info] [#0:script/workspace/workspace.lua:381]: Preload finish at:	file:///home/komothecat/.config/nvim/./docs
+[18:33:46.035][info] [#0:script/provider/diagnostic.lua:557]: Diagnostics scope [file:///home/komothecat/.config/nvim/./docs], files count:[11]
+[18:33:46.035][info] [#0:script/provider/diagnostic.lua:574]: Diagnostics scope [file:///home/komothecat/.config/nvim/./docs] finished, takes [0.001] sec.
