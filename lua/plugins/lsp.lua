@@ -104,7 +104,7 @@ return {
                 "tsserver",
                 "bashls",
                 "glas",
-                --"gleam",
+                "zls",
             })
 
             lspconf.yamlls.setup({
@@ -183,16 +183,21 @@ return {
             }))
 
             -- Config cmp-dictionary
-            local cmp_dict = require("cmp_dictionary")
-
-            cmp_dict.setup({ async = true })
-            cmp_dict.switcher({
-                filetype = {
-                    markdown = {
-                        vim.fn.stdpath("config") .. "/dict/en.dict",
-                        vim.fn.stdpath("config") .. "/dict/id.dict",
-                    },
+            local dict_dir = vim.fn.stdpath("config") .. "/dict"
+            local dict = {
+                ft = {
+                    markdown = { dict_dir .. "/en.dict", dict_dir .. "/id.dict" },
                 },
+            }
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "*",
+                callback = function(ev)
+                    local paths = dict.ft[ev.match] or {}
+                    require("cmp_dictionary").setup({
+                        paths = paths
+                    })
+                end
             })
 
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
