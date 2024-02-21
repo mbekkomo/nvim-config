@@ -1,23 +1,33 @@
 return {
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
+        "rebelot/kanagawa.nvim",
         config = function()
-            require("catppuccin").setup({
-                flavour = "mocha",
-                transparent_background = not vim.g.neovide,
-                show_end_of_buffer = false,
-                no_italic = true,
-                term_colors = true,
-                integrations = {
-                    cmp = true,
-                    notify = true,
-                    treesitter = true,
-                    lsp_saga = true,
+            require("kanagawa").setup({
+                theme = "wave",
+                commentStyle = { italic = false },
+                keywordStyle = { italic = false },
+                transparent = not vim.g.neovide,
+                colors = {
+                    theme = {
+                        all = {
+                            ui = {
+                                bg_gutter = "none"
+                            }
+                        }
+                    }
                 },
+                overrides = function(colors)
+                    local theme = colors.theme
+                    return {
+                        Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+                        PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+                        PmenuSbar = { bg = theme.ui.bg_m1 },
+                        PmenuThumb = { bg = theme.ui.bg_p2 },
+                    }
+                end,
             })
 
-            vim.cmd.colorscheme("catppuccin")
+            vim.cmd.colorscheme("kanagawa")
         end,
     },
 }

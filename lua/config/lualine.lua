@@ -1,4 +1,4 @@
-local C = require("catppuccin.palettes").get_palette()
+local C = require("kanagawa.colors").setup({ theme = "wave" }).palette
 local cond = require("utils.conditions")
 
 local config = {
@@ -6,8 +6,8 @@ local config = {
         component_separators = "",
         section_separators = "",
         theme = {
-            normal = { c = { fg = C.text, bg = "#45475a" } },
-            inactive = { c = { fg = C.text, bg = "#45475a" } },
+            normal = { c = { fg = C.fujiWhite, bg = C.sumiInk0 } },
+            inactive = { c = { fg = C.fujiWhite, bg = C.sumiInk0 } },
         },
     },
     sections = {
@@ -40,7 +40,7 @@ left({
     function()
         return "▌"
     end,
-    color = { fg = C.blue },
+    color = { fg = C.crystalBlue },
     padding = 0,
 })
 
@@ -50,26 +50,26 @@ left({
     end,
     color = function()
         local mcolor = {
-            n = C.blue,
-            i = C.green,
-            v = C.mauve,
-            V = C.mauve,
-            ["\22"] = C.mauve,
-            c = C.peach,
-            no = C.blue,
-            s = C.mauve,
-            S = C.mauve,
-            ["\19"] = C.mauve,
-            ic = C.yellow,
-            R = C.red,
-            Rv = C.red,
-            cv = C.peach,
-            ce = C.peach,
-            r = C.sky,
-            rm = C.sky,
-            ["r?"] = C.sky,
-            ["!"] = C.blue,
-            t = C.green,
+            n = C.crystalBlue,
+            i = C.autumnGreen,
+            v = C.oniViolet,
+            V = C.oniViolet,
+            ["\22"] = C.oniViolet,
+            c = C.surimiOrange,
+            no = C.crystalBlue,
+            s = C.oniViolet,
+            S = C.oniViolet,
+            ["\19"] = C.oniViolet,
+            ic = C.autumnYellow,
+            R = C.autumnRed,
+            Rv = C.autumnRed,
+            cv = C.surimiOrange,
+            ce = C.surimiOrange,
+            r = C.springBlue,
+            rm = C.springBlue,
+            ["r?"] = C.springBlue,
+            ["!"] = C.crystalBlue,
+            t = C.autumnGreen,
         }
 
         return { fg = mcolor[vim.fn.mode()], gui = "bold" }
@@ -112,9 +112,9 @@ left({
     sources = { "nvim_diagnostic" },
     symbols = { error = " ", warn = " ", info = " ", hint = "󰌵 " },
     diagnostics_color = {
-        color_error = { fg = C.red },
-        color_warn = { fg = C.yellow },
-        color_info = { fg = C.sky },
+        color_error = { fg = C.samuraiRed },
+        color_warn = { fg = C.roninYellow },
+        color_info = { fg = C.waveAqua1 },
     },
 })
 
@@ -122,18 +122,18 @@ right({
     "o:encoding",
     cond = cond.hide_in_width,
     fmt = string.upper,
-    color = { fg = C.maroon, gui = "bold" },
+    color = { fg = C.autumnRed, gui = "bold" },
 })
 
 right({
     "fileformat",
-    color = { fg = C.maroon, gui = "bold" },
+    color = { fg = C.autumnRed, gui = "bold" },
 })
 
 right({
     "branch",
     icon = "",
-    color = { fg = C.lavender, gui = "bold" },
+    color = { fg = C.springViolet1, gui = "bold" },
     padding = { left = 1 },
 })
 
@@ -141,7 +141,7 @@ right({
     function()
         return "▐"
     end,
-    color = { fg = C.blue },
+    color = { fg = C.crystalBlue },
     padding = 0,
 })
 

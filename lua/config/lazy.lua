@@ -23,7 +23,7 @@ return function(opts)
             { import = "plugins" },
         },
         install = {
-            colorscheme = { "catppuccin", "habamax" },
+            colorscheme = { "kanagawa-dragon", "habamax" },
         },
     }, opts or {})
 
