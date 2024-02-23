@@ -191,15 +191,15 @@ return {
                 callback = function(ev)
                     local paths = dict.ft[ev.match] or {}
                     require("cmp_dictionary").setup({
-                        paths = paths
+                        paths = paths,
                     })
-                end
+                end,
             })
 
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
             cmp_autopairs.filetypes = vim.tbl_deep_extend("force", cmp_autopairs.filetypes, {
                 bash = false,
-                sh = false
+                sh = false,
             })
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
