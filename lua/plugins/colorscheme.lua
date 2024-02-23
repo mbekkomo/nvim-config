@@ -11,10 +11,10 @@ return {
                     theme = {
                         all = {
                             ui = {
-                                bg_gutter = "none"
-                            }
-                        }
-                    }
+                                bg_gutter = "none",
+                            },
+                        },
+                    },
                 },
                 overrides = function(colors)
                     local theme = colors.theme

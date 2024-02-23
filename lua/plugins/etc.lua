@@ -4,7 +4,7 @@ return {
         "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
-        end
+        end,
     },
     {
         "brenoprata10/nvim-highlight-colors",
@@ -13,5 +13,9 @@ return {
     {
         "vincent178/nvim-github-linker",
         config = true,
+    },
+    {
+        "terrortylor/nvim-comment",
+        config = "nvim_comment",
     },
 }

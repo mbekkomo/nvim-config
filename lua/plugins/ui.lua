@@ -6,7 +6,7 @@ return {
         "romgrk/barbar.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
         main = "bufferline",
-        config = { icons = { modified = { button = "£" } } }
+        config = { icons = { modified = { button = "£" } } },
     },
     {
         "nvim-lualine/lualine.nvim",
