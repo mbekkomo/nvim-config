@@ -3,9 +3,7 @@ local is_executable = require("utils.utils").is_executable
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        cond = is_executable("tree-sitter") and is_executable("c++") or is_executable("g++") or is_executable(
-            "clang++"
-        ),
+        cond = is_executable("tree-sitter") and is_executable("c++") or is_executable("g++") or is_executable("clang++"),
         build = ":TSUpdate",
         dependencies = {
             "nvim-treesitter/playground",

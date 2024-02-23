@@ -3,7 +3,7 @@ local is_executable, silent_keymap = utils.is_executable, utils.silent_keymap
 
 return {
     {
-        cond = is_executable("rg") or is_executable("fd"),
+        cond = is_executable "rg" or is_executable "fd",
         "nvim-telescope/telescope.nvim",
         dependencies = "nvim-lua/plenary.nvim",
         branch = "0.1.x",
@@ -18,5 +18,5 @@ return {
             require("telescope").load_extension("projects")
             silent_keymap("n", "<Leader>prj", ":Telescope projects<CR>")
         end,
-    },
+    }
 }
