@@ -19,4 +19,10 @@ return {
         config = true,
         main = "nvim_comment",
     },
+    {
+        "akinsho/toggleterm.nvim",
+        opts = {
+            open_mapping = "<Leader>te",
+        },
+    },
 }
