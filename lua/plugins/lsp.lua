@@ -38,8 +38,6 @@ return {
 
             silent_keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
             silent_keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-
-            silent_keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
         end,
     },
     {
@@ -139,11 +137,18 @@ return {
 
             zero.setup()
 
-            -- Config lspsaga
             require("lspsaga").setup({})
 
             local cmp_action = require("lsp-zero").cmp_action()
+            local luasnip = require("luasnip")
             require("luasnip.loaders.from_vscode").lazy_load()
+
+            local function has_words_before()
+                unpack = unpack or table.unpack
+                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                return col ~= 0
+                    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+            end
 
             cmp.setup(vim.tbl_deep_extend("force", cmp.get_config(), {
                 mapping = cmp.mapping.preset.insert({
@@ -156,6 +161,27 @@ return {
 
                     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif has_words_before() then
+                            cmp.complete()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
                 formatting = {
                     fields = { "abbr", "kind", "menu" },
@@ -178,7 +204,6 @@ return {
                 },
             }))
 
-            -- Config cmp-dictionary
             local dict_dir = vim.fn.stdpath("config") .. "/dict"
             local dict = {
                 ft = {
