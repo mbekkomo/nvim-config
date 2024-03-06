@@ -41,12 +41,7 @@ if uname.sysname == "Linux" and uname.release:find("Microsoft") then
     }
 end
 
-local cmd_fmt = {
-    Stylua = "stylua",
-    Shfmt = "shfmt -w",
-}
-
-for usr_cmd, sh_cmd in pairs(cmd_fmt) do
+for usr_cmd, sh_cmd in pairs(require("config.formatter").formatter) do
     vim.api.nvim_create_user_command(usr_cmd, function(opts)
         local filename = table.remove(opts.fargs, 1) or "%"
 
@@ -92,14 +87,21 @@ vim.api.nvim_create_user_command("RunFile", function(opts)
     o.shell = oldshell
 end, { nargs = "*" })
 
-vim.api.nvim_create_autocmd("TermOpen", { command = "tabdo set nonumber norelativenumber" })
-vim.api.nvim_create_autocmd("WinNew", {
-    callback = function()
-        if vim.bo.filetype == "qf" then
-            vim.cmd.tabdo("set nonumber norelativenumber")
-        end
-    end,
-})
+vim.api.nvim_create_autocmd("TermOpen", { command = "setlocal nonumber norelativenumber" })
+
+local ftoptions = vim.api.nvim_create_augroup("ftoptions", { clear = true })
+
+for ft, opts in pairs(require("config.ftoptions").ft) do
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = ft,
+        callback = function()
+            for opt, val in pairs(opts) do
+                vim.opt_local[opt] = val
+            end
+        end,
+        group = ftoptions,
+    })
+end
 
 if g.neovide then
     o.guifont = "Hasklug Nerd Font Mono:h10"
