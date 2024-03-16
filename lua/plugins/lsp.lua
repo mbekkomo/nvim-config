@@ -56,7 +56,10 @@ return {
             { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
             "onsails/lspkind.nvim",
             "uga-rosa/cmp-dictionary",
-            "PaterJason/cmp-conjure",
+            { "ray-x/cmp-treesitter", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+            "hrsh7th/cmp-nvim-lsp-signature-help",
+            "hrsh7th/cmp-nvim-lsp-document-symbol",
+            "lukas-reineke/cmp-under-comparator",
         },
         config = function()
             local cmp = require("cmp")
@@ -68,10 +71,10 @@ return {
             end)
 
             zero.set_sign_icons({
-                error = "→",
-                warn = "→",
-                hint = "󰌵→",
-                info = "→",
+                error = "›",
+                warn = "›",
+                hint = "󰌵›",
+                info = "›",
             })
 
             vim.diagnostic.config({
@@ -193,16 +196,35 @@ return {
                 },
                 sources = {
                     { name = "dictionary", keyword_length = 2 },
-
-                    { name = "conjure" },
-
                     { name = "nvim_lsp" },
                     { name = "buffer" },
                     { name = "luasnip" },
                     { name = "nvim_lua" },
                     { name = "path" },
+                    { name = "treesitter" },
+                    { name = "nvim_lsp_signature_help" },
+                },
+                sorting = {
+                    comparators = {
+                        cmp.config.compare.offset,
+                        cmp.config.compare.exact,
+                        cmp.config.compare.score,
+                        require("cmp-under-comparator").under,
+                        cmp.config.compare.kind,
+                        cmp.config.compare.sort_text,
+                        cmp.config.compare.length,
+                        cmp.config.compare.order,
+                    },
                 },
             }))
+
+            require("cmp").setup.cmdline("/", {
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp_document_symbol" },
+                }, {
+                    { name = "buffer" },
+                }),
+            })
 
             local dict_dir = vim.fn.stdpath("config") .. "/dict"
             local dict = {
