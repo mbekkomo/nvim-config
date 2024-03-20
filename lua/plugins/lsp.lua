@@ -104,7 +104,7 @@ return {
                 "jsonls",
                 "tsserver",
                 "bashls",
-                "glas",
+                "gleam",
                 "zls",
             })
 
