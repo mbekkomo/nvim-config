@@ -1,5 +1,5 @@
 local utils = require("utils.utils")
-local silent_keymap = utils.silent_keymap
+local silent_keymap, is_executable = utils.silent_keymap, utils.is_executable
 
 return {
     {
@@ -89,24 +89,20 @@ return {
                 },
             })
 
-            require("lspconfig.configs").glas = {
-                default_config = {
-                    cmd = { "glas" },
-                    filetypes = { "gleam" },
-                    root_dir = lspconf.util.root_pattern("gleam.toml", ".git"),
-                    settings = {},
-                },
-            }
-
             zero.setup_servers({
                 "clangd",
                 "teal_ls",
                 "jsonls",
                 "tsserver",
                 "bashls",
-                "gleam",
                 "zls",
             })
+
+            if is_executable("glas") then
+                lspconf.gleam.setup({
+                    cmd = { "glas", "--stdio" }
+                })
+            end
 
             lspconf.yamlls.setup({
                 settings = {
