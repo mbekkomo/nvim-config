@@ -44,5 +44,5 @@ return {
     {
         "radenling/vim-dispatch-neovim",
         dependencies = { "tpope/vim-dispatch" }
-    }
+    },
 }

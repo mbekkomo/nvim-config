@@ -1,0 +1,32 @@
+snippet if Lua if
+ if $1 then
+ $0
+ end
+
+snippet for-i Lua `for i = ... do`
+ for i = $1, $2 do
+ $0
+ end
+
+snippet for-ii Same as for-i with increment
+ for i = $1, $2, $3 do
+ $0
+ end
+
+snippet for-iter Lua `for ... in ... do`
+ for $1 in $2 do
+ $0
+ end
+
+snippet fun Lua anonymous function
+ function($1)
+ $0
+ end
+
+snippet module Lua module
+ local $1 = {}
+ $0
+ return $1
+
+snippet strfmt Lua string.format
+ ("$1"):format($2)

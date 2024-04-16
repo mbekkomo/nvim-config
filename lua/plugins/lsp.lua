@@ -1,51 +1,59 @@
 local utils = require("utils.utils")
-local silent_keymap, is_executable = utils.silent_keymap, utils.is_executable
+local is_executable = utils.is_executable
 
 return {
     {
         "nvimdev/lspsaga.nvim",
+        name = "lspsaga.nvim",
         event = "LspAttach",
-        config = function()
-            silent_keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+        keys = {
 
-            silent_keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+            { "gh", "<cmd>Lspsaga lsp_finder<CR>", silent = true },
 
-            silent_keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
-            silent_keymap("n", "gR", "<cmd>Lspsaga rename ++project<CR>")
+            { "<leader>ca", "<cmd>Lspsaga code_action<CR>", mode = { "v", "n" }, silent = true },
 
-            silent_keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
-            silent_keymap("n", "gD", "<cmd>Lspsaga goto_definition<CR>")
-            silent_keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
-            silent_keymap("n", "gT", "<cmd>Lspsaga goto_type_definition<CR>")
+            { "gr", "<cmd>Lspsaga rename<CR>", silent = true },
+            { "gR", "<cmd>Lspsaga rename ++project<CR>", silent = true },
 
-            silent_keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
-            silent_keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-            silent_keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-            silent_keymap("n", "<leader>pe", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-            silent_keymap("n", "<leader>ne", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+            { "gd", "<cmd>Lspsaga peek_definition<CR>", silent = true },
+            { "gD", "<cmd>Lspsaga goto_definition<CR>", silent = true },
+            { "gt", "<cmd>Lspsaga peek_type_definition<CR>", silent = true },
+            { "gT", "<cmd>Lspsaga goto_type_definition<CR>", silent = true },
 
-            silent_keymap("n", "<leader>Pe", function()
-                require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-            end)
-            silent_keymap("n", "<leader>Ne", function()
-                require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-            end)
+            { "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>", silent = true },
+            { "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", silent = true },
+            { "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", silent = true },
+            { "<leader>pe", "<cmd>Lspsaga diagnostic_jump_prev<CR>", silent = true },
+            { "<leader>ne", "<cmd>Lspsaga diagnostic_jump_next<CR>", silent = true },
 
-            silent_keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+            {
+                "<leader>Pe",
+                function()
+                    require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+                end,
+                silent = true,
+            },
+            {
+                "<leader>Ne",
+                function()
+                    require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+                end,
+                silent = true,
+            },
 
-            silent_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-            silent_keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
+            { "<leader>o", "<cmd>Lspsaga outline<CR>", silent = true },
 
-            silent_keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-            silent_keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-        end,
+            { "K", "<cmd>Lspsaga hover_doc<CR>", silent = true },
+            { "K", "<cmd>Lspsaga hover_doc ++keep<CR>", silent = true },
+
+            { "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", silent = true },
+            { "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", silent = true },
+        },
     },
     {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
+        "hrsh7th/nvim-cmp",
+        name = "nvim-cmp",
         dependencies = {
-            "neovim/nvim-lspconfig",
-            "hrsh7th/nvim-cmp",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
@@ -60,6 +68,16 @@ return {
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-nvim-lsp-document-symbol",
             "lukas-reineke/cmp-under-comparator",
+        },
+        config = false,
+    },
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "lspsaga.nvim",
+            "nvim-cmp",
+            "neovim/nvim-lspconfig",
         },
         config = function()
             local cmp = require("cmp")
@@ -100,7 +118,7 @@ return {
 
             if is_executable("glas") then
                 lspconf.gleam.setup({
-                    cmd = { "glas", "--stdio" }
+                    cmd = { "glas", "--stdio" },
                 })
             end
 
@@ -141,6 +159,7 @@ return {
             local cmp_action = require("lsp-zero").cmp_action()
             local luasnip = require("luasnip")
             require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_snipmate").lazy_load()
 
             local function has_words_before()
                 unpack = unpack or table.unpack
@@ -150,8 +169,25 @@ return {
             end
 
             cmp.setup(vim.tbl_deep_extend("force", cmp.get_config(), {
+                snippet = {
+                    expand = function(args)
+                        require("luasnip").lsp_expand(args.body)
+                    end,
+                },
                 mapping = cmp.mapping.preset.insert({
-                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<CR>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if luasnip.expandable() then
+                                luasnip.expand()
+                            else
+                                cmp.confirm({
+                                    select = true,
+                                })
+                            end
+                        else
+                            fallback()
+                        end
+                    end),
 
                     ["<C-Space>"] = cmp.mapping.complete(),
 
@@ -194,7 +230,7 @@ return {
                     { name = "dictionary", keyword_length = 2 },
                     { name = "nvim_lsp" },
                     { name = "buffer" },
-                    { name = "luasnip" },
+                    { name = "luasnip", option = { show_autosnippets = true } },
                     { name = "nvim_lua" },
                     { name = "path" },
                     { name = "treesitter" },
